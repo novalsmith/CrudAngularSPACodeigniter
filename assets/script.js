@@ -1,24 +1,34 @@
-
-var ci3App = angular.module('ci3App', ['ngRoute', "ui.bootstrap.modal"]);
-ci3App.config(function($routeProvider) {
+var App = angular.module('App', ['ngRoute', "ui.bootstrap.modal"]);
+App.config(function($routeProvider) {
     $routeProvider
-            .when('/', {
+        .when('/', {
         templateUrl: 'index.php/welcome/home',
         controller: 'mainController'
     })
 
-            .when('/user', {
+        .when('/user', {
         templateUrl: 'index.php/user/',
         controller: 'userController'
     })
 
+        .when('/student', {
+        templateUrl: 'index.php/student/',
+        controller: 'studentController'
+    })
+
 });
 
-ci3App.controller('mainController', function($scope) {
+
+
+App.controller('mainController', function($scope) {
     $scope.message = 'Everyone come and see how good I look!';
 });
 
-ci3App.controller('userController', function($window, $location, $scope, $http) {
+App.controller('userController', function($scope) {
+    $scope.message = 'List Users';
+});
+
+App.controller('userController', function($window, $location, $scope, $http) {
     $scope.users = [];
     $scope.operation = 'Add New';
     $scope.username = '';
@@ -26,7 +36,7 @@ ci3App.controller('userController', function($window, $location, $scope, $http) 
     $scope.email = '';
 
     $scope.updateList = function() {
-        $http.get(siteUrl + "user/getList").success(function(response) {
+        $http.get(siteUrl + "index.php/user/getList").success(function(response) {
             $scope.users = response;
         });
     }
@@ -37,7 +47,7 @@ ci3App.controller('userController', function($window, $location, $scope, $http) 
             email: $scope.email,
             id: $scope.userId
         });
-        $http.post(siteUrl + "user/save/", data).success(function(data, status) {
+        $http.post(siteUrl + "index.php/user/save/", data).success(function(data, status) {
             $scope.userModal = false;
             $scope.updateList();
         });
@@ -45,14 +55,14 @@ ci3App.controller('userController', function($window, $location, $scope, $http) 
     }
 
     $scope.deleteUser = function(userId, index) {
-        $http.get(siteUrl + "user/remove/" + userId).success(function(response) {
+        $http.get(siteUrl + "index.php/user/remove/" + userId).success(function(response) {
             $scope.users.splice(index, 1);
         });
     }
 
     $scope.openModal = function() {
         $scope.username = '';
-        $scope.operation = 'Add User';
+        $scope.operation = 'Save';
         $scope.email = '';
         $scope.userId = 0;
         $location.path = '#/user/add';
@@ -67,7 +77,7 @@ ci3App.controller('userController', function($window, $location, $scope, $http) 
     }
 
     $scope.editUser = function(user) {
-        $scope.operation = 'Update User';
+        $scope.operation = 'Update';
         $scope.username = user.username;
         $scope.email = user.email;
         $scope.userId = user.id;

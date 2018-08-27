@@ -5,19 +5,14 @@
                 <button type="button" class="close" ng-click='closeModal();' data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <tr>
-                        <th>Username</th>
-                        <td><input type="text" class="form-control"  ng-model='username' /></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" class="form-control" ng-model='email' /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <label>Username : </label>
+                    <input type="text" class="form-control"  ng-model='username' />
+                </div>
+                <div class="form-group">
+                    <label>Email : </label>
+                    <input type="text" class="form-control" ng-model='email' />
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click='closeModal();'>Close</button>

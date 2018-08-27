@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/demo/ci32withaj/';
-
+// $config['base_url'] = 'http://localhost/demo/ci32withaj/';
+$config['base_url'] = 'localhost:8888/Codeigniter/Angular-Routing-With-CodeIgniter-3.2/';
 /*
 |--------------------------------------------------------------------------
 | Index File

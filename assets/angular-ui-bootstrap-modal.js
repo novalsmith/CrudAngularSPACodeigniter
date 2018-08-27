@@ -1,3 +1,5 @@
+// var siteUrl = "localhost:8888/Codeigniter/Angular-Routing-With-CodeIgniter-3.2/";
+
 angular.module('ui.bootstrap.modal', [])
 .constant('modalConfig', {
   backdrop: true,
